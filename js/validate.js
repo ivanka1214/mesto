@@ -1,3 +1,4 @@
+
 const showInputError = (formElement, inputElement, errorMessage, enableConfig) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(enableConfig.inputErrorClass);

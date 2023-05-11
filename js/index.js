@@ -25,21 +25,21 @@ const initialCards = [
   }
 ];
 
-const editButton = document.querySelector('.profile__edit-button');
+const buttonOpenFormEditProfile = document.querySelector('.profile__edit-button');
 const editPopup = document.querySelector('.popup_type_edit-profile');
-const editClose = document.querySelector('.popup__close_type-edit');
-const editForm = document.querySelector('.popup__form_type-edit');
-const editName = editForm.querySelector('#nameInput');
-const editJob = editForm.querySelector('#jobs');
+const buttonCloseFormEditProfile = document.querySelector('.popup__close_type-edit');
+const formEditProfile = document.querySelector('.popup__form_type-edit');
+const editName = formEditProfile.querySelector('#nameInput');
+const editJob = formEditProfile.querySelector('#jobs');
 const profileTitle = document.querySelector('.profile__title');
 const profileSubtitle = document.querySelector('.profile__subtitle');
-const addButton = document.querySelector('.profile__add-button');
+const buttonOpenFormAddCard = document.querySelector('.profile__add-button');
 const addPopup = document.querySelector('.popup_type_add-profile');
-const addClose = document.querySelector('.popup__close_type-add');
-const addForm = document.querySelector('.popup__form_type-add');
+const buttonCloseFormAddCard = document.querySelector('.popup__close_type-add');
+const formAddCard = document.querySelector('.popup__form_type-add');
 const placeTemplate = document.getElementById('element_card');
 const placesContainer = document.querySelector('.elements');
-const closeImg = document.querySelector('.popup__close_type-image');
+const buttonClosePopupImage = document.querySelector('.popup__close_type-image');
 const popupImg = document.querySelector('.popup_type_image');
 const urlImg = document.querySelector('.popup__img');
 const textImg = document.querySelector('.popup__text');
@@ -58,7 +58,9 @@ function showEditProfilePopup() {
 function closeByEsc(evt) {
   if (evt.keyCode === clickEscape) {
     popupList.forEach((el) => {
-      closePopup(el);
+      if (el.classList.contains('popup_opened')) {
+        closePopup(el);
+      }
     });
   };
 };
@@ -66,7 +68,9 @@ function closeByEsc(evt) {
 function closeByOverlayClick(evt) {
   if (evt.target.classList.contains('popup_opened')) {
     popupList.forEach((el) => {
-      closePopup(el);
+      if (el.classList.contains('popup_opened')) {
+        closePopup(el);
+      }
     });
   };
 };
@@ -81,6 +85,8 @@ function closePopup(el) {
   el.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeByEsc);
   document.removeEventListener('mousedown', closeByOverlayClick);
+  disabledButton.setAttribute("disabled", true);
+  disabledButton.classList.add('popup__button_disabled');
 }
 
 function handleProfileFormSubmit(evt) {
@@ -98,9 +104,7 @@ function addCard(evt) {
   const element = createCard(copyCard);
   placesContainer.prepend(element);
   closePopup(addPopup);
-  addForm.reset();
-  disabledButton.setAttribute("disabled", true);
-  disabledButton.classList.add('popup__button_disabled');
+  formAddCard.reset();
 }
 
 const createCard = (cardData) => {
@@ -113,7 +117,7 @@ const createCard = (cardData) => {
   cardImage.src = cardData.link;
   cardImage.alt = cardData.name;
   const deleteCard = () => {
-    cardElement.remove();
+  cardElement.remove();
   }
 
   const toggleLike = () => {
@@ -136,25 +140,25 @@ initialCards.forEach((card) => {
   placesContainer.append(element);
 });
 
-addForm.addEventListener('submit', addCard);
+formAddCard.addEventListener('submit', addCard);
 
-addButton.addEventListener('click', () => {
+buttonOpenFormAddCard.addEventListener('click', () => {
   openPopup(addPopup);
 });
 
-addClose.addEventListener('click', () => {
+buttonCloseFormAddCard.addEventListener('click', () => {
   closePopup(addPopup)
 });
 
-closeImg.addEventListener('click', () => {
+buttonClosePopupImage.addEventListener('click', () => {
   closePopup(popupImg)
 });
 
 
-editClose.addEventListener('click', () => {
+buttonCloseFormEditProfile.addEventListener('click', () => {
   closePopup(editPopup)
 });
 
-editButton.addEventListener('click', showEditProfilePopup);
-editForm.addEventListener('submit', handleProfileFormSubmit);
+buttonOpenFormEditProfile.addEventListener('click', showEditProfilePopup);
+formEditProfile.addEventListener('submit', handleProfileFormSubmit);
 
