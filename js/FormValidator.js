@@ -1,6 +1,4 @@
-
-
-export default class FormValidator {
+export class FormValidator {
   constructor(enableConfig, form) {
     this._form = form;
     this._inputSelector = enableConfig.inputSelector;
@@ -62,9 +60,9 @@ export default class FormValidator {
 
   resetForm() {
     this._listInputs.forEach(input => {
-      const errorTextEl = this._form.querySelector(`.${this._errorTemplate}${input.name}`);
+      const errorReset = this._form.querySelector(`.${this._errorTemplate}${input.name}`);
       if (!input.validity.valid) {
-        this._hideInputError(errorTextEl, input);
+        this._hideInputError(errorReset, input);
       }
     })
     this._disableButton();
