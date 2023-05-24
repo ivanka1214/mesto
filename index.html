@@ -39,13 +39,13 @@
       <form action="" name="editData" class="popup__form popup__form_type-edit" novalidate>
         <fieldset class="popup__set">
           <div class="popup__field">
-            <input type="text" name="purpose_name" class="popup__input" id="nameInput" minlength="2" maxlength="40"
+            <input type="text" name="name" class="popup__input" id="nameInput" minlength="2" maxlength="40"
               required>
-            <span class="popup__error_purpose_name"></span>
+            <span class="popup__error popup__error_type_name"></span>
           </div>
           <div class="popup__field">
-            <input type="text" name="purpose_jobs" class="popup__input" id="jobs" minlength="2" maxlength="200" required>
-            <span class="popup__error_purpose_jobs"></span>
+            <input type="text" name="jobs" class="popup__input" id="jobs" minlength="2" maxlength="200" required>
+            <span class="popup__error popup__error_type_jobs"></span>
           </div>
           <button type="submit" class="popup__button">Сохранить</button>
         </fieldset>
@@ -59,14 +59,14 @@
       <form action="" name="addData" class="popup__form popup__form_type-add" novalidate>
         <fieldset class="popup__set">
           <div class="popup__field">
-            <input type="text" name="purpose_title" class="popup__input" id="title-card" placeholder="Название" minlength="2"
+            <input type="text" name="title" class="popup__input" id="title-card" placeholder="Название" minlength="2"
               maxlength="30" required>
-            <span class="popup__error_purpose_title"></span>
+            <span class="popup__error popup__error_type_title"></span>
           </div>
           <div class="popup__field">
-            <input type="url" name="purpose_link" class="popup__input" id="img-src" placeholder="Ссылка на картинку"
+            <input type="url" name="link" class="popup__input" id="img-src" placeholder="Ссылка на картинку"
               required>
-            <span class="popup__error_purpose_link"></span>
+            <span class="popup__error popup__error_type_link"></span>
           </div>
           <button type="submit" class="popup__button" id="popup__button-add">Создать</button>
         </fieldset>

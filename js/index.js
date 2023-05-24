@@ -28,11 +28,11 @@ const clickEscape = 27;
 const dataValidation = {
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
+  errorTemplate: 'popup__error_type_',
   inactiveButtonClass: 'popup__button_disabled',
   inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible',
-  errorTemplate: 'popup__error_'
 };
+
 
 const formEditDataValidation = new FormValidator(dataValidation, formEditProfile);
 formEditDataValidation.enableValidation();
