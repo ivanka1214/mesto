@@ -1,5 +1,5 @@
 import { initialCards } from './constants.js';
-import { Card } from './card.js';
+import { Card } from './Сard.js';
 import { FormValidator } from './FormValidator.js';
 
 const buttonOpenFormEditProfile = document.querySelector('.profile__edit-button');
@@ -19,7 +19,7 @@ const buttonClosePopupImage = document.querySelector('.popup__close_type-image')
 const popupImg = document.querySelector('.popup_type_image');
 const urlImg = document.querySelector('.popup__img');
 const textImg = document.querySelector('.popup__text');
-const popupList = document.querySelectorAll('.popup');
+const popupList = Array.from(document.querySelectorAll('.popup'));
 const titleCard = document.querySelector('#title-card');
 const srcCard = document.querySelector('#img-src');
 const placeTemplate = '#element_card';
@@ -49,29 +49,31 @@ function showEditProfilePopup() {
 
 function closeByEsc(evt) {
   if (evt.keyCode === clickEscape) {
-    popupList.forEach((el) => {
-      if (el.classList.contains('popup_opened')) {
-        closePopup(el);
-      }
-    });
+    const activePopup = document.querySelector('.popup_opened');
+        closePopup(activePopup);
   };
 };
 
 function closeByOverlayClick(evt) {
   if (evt.target.classList.contains('popup_opened')) {
-    popupList.forEach((el) => {
-      if (el.classList.contains('popup_opened')) {
-        closePopup(el);
-      }
-    });
+        closePopup(evt.target);
   };
 };
+
 
 function openPopup(el) {
   el.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEsc);
-  document.addEventListener('mousedown', closeByOverlayClick);
 }
+
+popupList.forEach((popup) => { // итерируем массив. объявляя каждый попап в переменную popup
+  popup.addEventListener('mouseup', (event) => { // на каждый попап устанавливаем слушателя события
+    const targetClassList = event.target.classList; // запишем в переменную класс элемента, на котором произошло событие
+    if (targetClassList.contains('popup') || targetClassList.contains('popup__close')) { // проверяем наличие класса попапа ИЛИ кнопки закрытия
+      closePopup(popup); // если один из классов присутствует, то закрываем попап
+    }
+  })
+})
 
 function closePopup(el) {
   el.classList.remove('popup_opened');
@@ -81,18 +83,22 @@ function closePopup(el) {
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
-  const valueName = editName.value;
-  const valueJobs = editJob.value;
-  profileTitle.textContent = valueName;
-  profileSubtitle.textContent = valueJobs;
+  profileTitle.textContent = editName.value;
+  profileSubtitle.textContent = editJob.value;
   closePopup(editPopup);
 }
 
-function openImagePopup(CardData) {
+function openPopupImg(CardData) {
   urlImg.src = CardData.link;
   urlImg.alt = CardData.name;
   textImg.textContent = CardData.name;
   openPopup(popupImg);
+}
+
+function createCardNew(element) {
+  const card = new Card(element, placeTemplate, openPopupImg);
+  const elementCard = card.createCard();
+  return elementCard;
 }
 
 function addCard(container, card) {
@@ -100,16 +106,13 @@ function addCard(container, card) {
 }
 
 initialCards.forEach(element => {
-  const card = new Card(element, placeTemplate, openImagePopup);
-  addCard(placesContainer, card.createCard());
-
+  addCard(placesContainer, createCardNew(element));
 });
 
 formAddCard.addEventListener('submit', (evt) => {
   evt.preventDefault();
   const dataCard = { name: titleCard.value, link: srcCard.value };
-  const card = new Card(dataCard, placeTemplate, openImagePopup);
-  addCard(placesContainer, card.createCard());
+  addCard(placesContainer, createCardNew(dataCard));
   closePopup(addPopup);
 });
 

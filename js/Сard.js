@@ -1,10 +1,10 @@
 export class Card {
-  constructor(cardData, placeTemplate, openImagePopup) {
+  constructor(cardData, placeTemplate, openPopupImg) {
     this._cardData = cardData;
     this._link = cardData.link;
     this._name = cardData.name;
     this._placeTemplate = placeTemplate;
-    this._openImagePopup = openImagePopup;
+    this._openPopupImg = openPopupImg;
     this._elementClone = document.querySelector(this._placeTemplate).content.querySelector('.elements__element').cloneNode(true);
   }
 
@@ -16,7 +16,7 @@ export class Card {
     this._elementClone = null;
   }
   _handleOpenImg = () => {
-    this._openImagePopup(this._cardData);
+    this._openPopupImg(this._cardData);
   }
   _setEventListeners(){
     this._like.addEventListener('click',this._handleLike);
