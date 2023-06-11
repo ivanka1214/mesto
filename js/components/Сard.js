@@ -2,7 +2,7 @@ export class Card {
   constructor(cardData, placeTemplate, openPopupImg) {
     this._cardData = cardData;
     this._link = cardData.link;
-    this._name = cardData.name;
+    this._name = cardData.title;
     this._placeTemplate = placeTemplate;
     this._openPopupImg = openPopupImg;
     this._elementClone = document.querySelector(this._placeTemplate).content.querySelector('.elements__element').cloneNode(true);
