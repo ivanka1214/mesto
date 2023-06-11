@@ -1,9 +1,10 @@
-import { Card } from './js/components/Сard.js';
-import { FormValidator } from './js/components/FormValidator.js';
-import PopupWithImage from './js/components/PopupWithImage.js';
-import Section from './js/components/Section.js';
-import UserInfo from './js/components/UserInfo.js';
-import PopupWithForm from './js/components/PopupWithForm.js';
+import '../src/pages/index.css';
+import { Card } from '../src/js/components/Сard.js';
+import { FormValidator } from '../src/js/components/FormValidator.js';
+import PopupWithImage from '../src/js/components/PopupWithImage.js';
+import Section from '../src/js/components/Section.js';
+import UserInfo from '../src/js/components/UserInfo.js';
+import PopupWithForm from '../src/js/components/PopupWithForm.js';
 import {
   initialCards,
   buttonOpenFormEditProfile,
@@ -66,3 +67,7 @@ buttonOpenFormAddCard.addEventListener('click', () => {
   popupAddCard.open();
 });
 buttonOpenFormEditProfile.addEventListener('click', showEditProfilePopup);
+
+
+
+
