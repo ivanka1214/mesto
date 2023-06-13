@@ -26,8 +26,6 @@ const formEditDataValidation = new FormValidator(dataValidation, formEditProfile
 formEditDataValidation.enableValidation();
 const formAddDataValidation = new FormValidator(dataValidation, formAddCard);
 formAddDataValidation.enableValidation();
-
-
 // const section = new Section({
 //   items: initialCards,
 //   renderer: (element) => {
@@ -36,7 +34,6 @@ formAddDataValidation.enableValidation();
 //   }
 // }, listElementSelector);
 // section.addCartArray();
-
 const section = new Section({
   items: initialCards,
   renderer: (element) => {
@@ -46,12 +43,11 @@ const section = new Section({
 }, listElementSelector);
 section.addCartArray();
 
-
 function handleNewCard(element) {
   const newCard = new Card(element, placeTemplate, popupImage.open);
   return newCard;
 }
-//////////////////////
+///////////////////////////////////////////////////////////////////....
 function showEditProfilePopup() {
   formEditDataValidation.resetForm();
   popupProfile.setInputsValue(userInfo.getUserInfo())
