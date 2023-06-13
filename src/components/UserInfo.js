@@ -3,7 +3,7 @@ export default class UserInfo {
     this._profileName = document.querySelector(configInfo.profileNameSelector);
     this._profileJob = document.querySelector(configInfo.profileJobSelector);
   }
-  getUserIngo(){
+  getUserInfo(){
     return {name: this._profileName.textContent, jobs: this._profileJob.textContent}
   }
   setUserInfo(dataUser) {

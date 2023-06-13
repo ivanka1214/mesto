@@ -1,10 +1,10 @@
-import '../src/pages/index.css';
-import { Card } from '../src/js/components/Сard.js';
-import { FormValidator } from '../src/js/components/FormValidator.js';
-import PopupWithImage from '../src/js/components/PopupWithImage.js';
-import Section from '../src/js/components/Section.js';
-import UserInfo from '../src/js/components/UserInfo.js';
-import PopupWithForm from '../src/js/components/PopupWithForm.js';
+import '../pages/index.css';
+import { Card } from '../components/Сard.js';
+import { FormValidator } from '../components/FormValidator.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import Section from '../components/Section.js';
+import UserInfo from '../components/UserInfo.js';
+import PopupWithForm from '../components/PopupWithForm.js';
 import {
   initialCards,
   buttonOpenFormEditProfile,
@@ -18,7 +18,7 @@ import {
   popupAddCardSelector,
   configInfo,
   dataValidation
-} from './js/utils/constants.js';
+} from '../utils/constants.js';
 
 const userInfo = new UserInfo(configInfo);
 const popupImage = new PopupWithImage(popupImageSelector);
@@ -27,24 +27,36 @@ formEditDataValidation.enableValidation();
 const formAddDataValidation = new FormValidator(dataValidation, formAddCard);
 formAddDataValidation.enableValidation();
 
-function showEditProfilePopup() {
-  formEditDataValidation.resetForm();
-  popupProfile.setInputsValue(userInfo.getUserIngo())
-  popupProfile.open();
-}
 
-function addCard(container, card) {
-  container.prepend(card);
-}
+// const section = new Section({
+//   items: initialCards,
+//   renderer: (element) => {
+//     const card = new Card(element, placeTemplate, popupImage.open);
+//     return card.createCard();
+//   }
+// }, listElementSelector);
+// section.addCartArray();
 
 const section = new Section({
   items: initialCards,
   renderer: (element) => {
-    const card = new Card(element, placeTemplate, popupImage.open);
+    const card = handleNewCard(element);
     return card.createCard();
   }
 }, listElementSelector);
 section.addCartArray();
+
+
+function handleNewCard(element) {
+  const newCard = new Card(element, placeTemplate, popupImage.open);
+  return newCard;
+}
+//////////////////////
+function showEditProfilePopup() {
+  formEditDataValidation.resetForm();
+  popupProfile.setInputsValue(userInfo.getUserInfo())
+  popupProfile.open();
+}
 
 const popupProfile = new PopupWithForm(popupProfileSelector, (evt) => {
   evt.preventDefault();
