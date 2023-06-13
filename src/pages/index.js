@@ -26,45 +26,43 @@ const formEditDataValidation = new FormValidator(dataValidation, formEditProfile
 formEditDataValidation.enableValidation();
 const formAddDataValidation = new FormValidator(dataValidation, formAddCard);
 formAddDataValidation.enableValidation();
-// const section = new Section({
-//   items: initialCards,
-//   renderer: (element) => {
-//     const card = new Card(element, placeTemplate, popupImage.open);
-//     return card.createCard();
-//   }
-// }, listElementSelector);
-// section.addCartArray();
+
+const createNEWCard = (cardData) => {
+  const card = new Card(cardData, placeTemplate, popupImage.open);
+  return card.createCard();
+}
+
 const section = new Section({
   items: initialCards,
-  renderer: (element) => {
-    const card = handleNewCard(element);
-    return card.createCard();
-  }
-}, listElementSelector);
+  renderer: (cardData) => {
+    const cardElement = createNEWCard(cardData);
+    section.addItem(cardElement);
+    },
+  },
+  listElementSelector
+);
+
 section.addCartArray();
 
-function handleNewCard(element) {
-  const newCard = new Card(element, placeTemplate, popupImage.open);
-  return newCard;
-}
-///////////////////////////////////////////////////////////////////....
-function showEditProfilePopup() {
-  formEditDataValidation.resetForm();
-  popupProfile.setInputsValue(userInfo.getUserInfo())
-  popupProfile.open();
-}
+const handleEditPopupSubmit = (formData) => {
+  userInfo.setUserInfo(popupProfile._getInputsValue())
+};
 
-const popupProfile = new PopupWithForm(popupProfileSelector, (evt) => {
-  evt.preventDefault();
-  userInfo.setUserInfo(popupProfile.getInputsValue())
-  popupProfile.close();
-});
+const handleAddPopupSubmit = (formData) => {
+  const title = formData.title;
+  const link = formData.link;
 
-const popupAddCard = new PopupWithForm(popupAddCardSelector, (evt) => {
-  evt.preventDefault();
-  section.addItem(section.renderer(popupAddCard.getInputsValue()));
-  popupAddCard.close();
-})
+  const cardData = {
+    title,
+    link,
+  }
+  const cardElement = createNEWCard(cardData);
+  section.addItem(cardElement);
+
+};
+
+const popupProfile = new PopupWithForm(popupProfileSelector, handleEditPopupSubmit);
+const popupAddCard = new PopupWithForm(popupAddCardSelector, handleAddPopupSubmit);
 
 popupImage.setEventListeners();
 popupProfile.setEventListeners();
@@ -74,7 +72,10 @@ buttonOpenFormAddCard.addEventListener('click', () => {
   formAddDataValidation.resetForm();
   popupAddCard.open();
 });
-buttonOpenFormEditProfile.addEventListener('click', showEditProfilePopup);
+buttonOpenFormEditProfile.addEventListener('click', () => {
+  formEditDataValidation.resetForm();
+  popupProfile.open();
+});
 
 
 
