@@ -34,9 +34,11 @@ const popupProfileSelector = '.popup_type_edit-profile';
 const popupImageSelector = '.popup_type_image';
 const listElementSelector = '.elements';
 const popupAddCardSelector = '.popup_type_add-profile';
+
 const configInfo = {
   profileNameSelector: '.profile__title',
-  profileJobSelector: '.profile__subtitle'
+  profileJobSelector: '.profile__subtitle',
+  profileAvatar:'.profile__avatar'
 }
 
 const dataValidation = {
