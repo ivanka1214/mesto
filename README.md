@@ -6,4 +6,8 @@
 * БЭМ
 * GitHub
 * классы (Card, formValidator)
-#### [Ссылка на GitHub Pages](https://ivanka1214.github.io/index.html)
+
+#### [Ссылка на GitHub Pages](https://ivanka1214.github.io/mesto/)
+
+
+
