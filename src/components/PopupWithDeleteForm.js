@@ -6,7 +6,7 @@ export default class PopupWithDeleteForm extends Popup {
     this._submitFunction = submitFunction;
     this._form = this._popup.querySelector('.popup__form');
     this._submitButton = this._form.querySelector('.popup__button');
-    this._defaultButtonText =  this._submitButton.textContent;
+    this._defaultButtonText = this._submitButton.textContent;
   }
 
   setEventListeners() {
@@ -14,8 +14,7 @@ export default class PopupWithDeleteForm extends Popup {
     this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
       this._submitButton.textContent = `${this._submitButton.textContent}...`
-      this._submitFunction({card:this._element, cardId:this._cardId});
-      // this.close();
+      this._submitFunction({ card: this._element, cardId: this._cardId });
     });
   }
   setupDefaultText() {
@@ -23,7 +22,7 @@ export default class PopupWithDeleteForm extends Popup {
   }
 
 
-  open = ({card, cardId}) => {
+  open = ({ card, cardId }) => {
     super.open()
     this._element = card;
     this._cardId = cardId;
