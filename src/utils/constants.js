@@ -33,8 +33,11 @@ const placeTemplate = '#element_card';
 const popupProfileSelector = '.popup_type_edit-profile';
 const popupImageSelector = '.popup_type_image';
 const listElementSelector = '.elements';
+const popupDeleteSelector ='.popup_type_delete';
 const popupAddCardSelector = '.popup_type_add-profile';
-
+const avatarImageElement = document.querySelector('.profile__container');
+const formAvatar = document.forms.editAvatar;
+const popupEditAvatarSelector = '.popup_type_avatar';
 const configInfo = {
   profileNameSelector: '.profile__title',
   profileJobSelector: '.profile__subtitle',
@@ -56,8 +59,12 @@ export {
   formAddCard,
   formEditProfile,
   placeTemplate,
+  popupEditAvatarSelector,
   popupProfileSelector,
   popupImageSelector,
+  avatarImageElement,
+  formAvatar,
+  popupDeleteSelector,
   listElementSelector,
   popupAddCardSelector,
   configInfo,
