@@ -8,6 +8,7 @@ export default class Card {
     this._ownerId = cardData.owner._id;
     this._cardId = cardData._id;
     this._openDelete = openDelete;
+
     this._changeLike = changeLike;
     this._placeTemplate = placeTemplate;
     this._openPopupImg = openPopupImg;
@@ -20,7 +21,7 @@ export default class Card {
   }
 
   _handleLike = () => {
-    this._changeLike(this._like, this._cardId)
+    this._changeLike(this._like.classList.contains('elements__love_active'), this._cardId)
   }
 
   _handleDeleteElement = () => {
@@ -36,6 +37,8 @@ export default class Card {
     this._deleteCards.addEventListener('click', this._handleDeleteElement);
     this._cardImage.addEventListener('click', this._handleOpenImg);
   }
+
+
 
   removeCardElement() {
     this._elementClone.remove();
